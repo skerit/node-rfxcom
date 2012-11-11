@@ -56,18 +56,19 @@ There's a specialised Lighting5 prototype, which uses an RfxCom object.
 
 <pre>
     var rfxtrx = new rfxcom.RfxCom("/dev/ttyUSB0", {debug: true}),
-        lightwaverf = new rfxcom.Lighting5(rfxtrx, rfxcom.lighting5.LIGHTWAVERF);
+        lightwaverf = new rfxcom.Lighting5(rfxtrx, rfxcom.Lighting5.LIGHTWAVERF);
 
-    lightwaverf.switchOn("0xF09AC8/1", {mood: 0x03});
+    lightwaverf.switchOn("0xF09AC8/1", {command: rfxcom.Lighting5.MOOD1});
     lightwaverf.switchOn("0xF09AC8/2", {level: 80});
 </pre>
 
 I've tested it with both LightwaveRf lights, and the relay switch.
 
-LightwaveRf lights get their identity from the remote used to pair, if you don't
-have a remote, or if you want to specify the address manually, you can pair the
-device and send lightwaverf.switchOn("<insert address>") to unpair, send
-lightwave.switchOff("<insert address>") while the device is awaiting pairing.
+LightwaveRf lights get their identity from the remote used to pair, if you
+don't have a remote, or if you want to specify the address manually, you can
+put the device into pairing mode and send lightwaverf.switchOn("<address>"),
+to unpair, send lightwave.switchOff("<address>") while the device is in pairing
+mode.
 
 Lighting2
 ---------
@@ -75,14 +76,15 @@ There's a specialised Lighting2 prototype, which uses an RfxCom object.
 
 <pre>
     var rfxtrx = new rfxcom.RfxCom("/dev/ttyUSB0", {debug: true}),
-        lighting2 = new rfxcom.Lighting2(rfxtrx, rfxcom.lighting2.HOMEEASY_EU);
+        lighting2 = new rfxcom.Lighting2(rfxtrx, rfxcom.Lighting2.HOMEEASY_EU);
 
     lighting2.switchOn("0xF09AC8AA/1");
     lighting2.switchOff("0xF09AC8AA/1");
 </pre>
 
 The lighting2 message controls one of three subtypes, you need to specify the
-subtype to the constructor, the options are in rfxcom.lighting2.
+subtype to the constructor, the options are in rfxcom.defines and bound to the
+Lighting2 function as Lighting2.ANSLUT, Lighting2.HOMEEASY_EU, Lighting2.AC.
 
 Google Group
 ============
