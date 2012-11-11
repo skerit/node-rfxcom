@@ -34,7 +34,7 @@ describe('Lighting5 class', function(){
   });
   describe('.switchOn', function(){
     beforeEach(function (){
-      lighting5 = new rfxcom.Lighting5(device, rfxcom.lighting5.LIGHTWAVERF);
+      lighting5 = new rfxcom.Lighting5(device, rfxcom.Lighting5.LIGHTWAVERF);
     });
     it('should send the correct bytes to the serialport', function(done){
       var sentCommandId;
@@ -52,37 +52,37 @@ describe('Lighting5 class', function(){
     });
     it('should handle mood lighting', function(done){
       lighting5.switchOn('0xF09AC8/1', {
-        mood: 0x03
+        command: rfxcom.Lighting5.MOOD2
       }, function(){
         done();
       });
-      expect(fakeSerialPort).toHaveSent([10, 20, 0, 0, 0xF0, 0x9A, 0xC8, 1, 3, 0x1f, 0]);
+      expect(fakeSerialPort).toHaveSent([10, 20, 0, 0, 0xF0, 0x9A, 0xC8, 1, 4, 0x1f, 0]);
     });
-    it('should throw an exception with an invalid mood value', function(){
+    it('should throw an exception with an invalid level value', function(){
       expect(function(){
         lighting5.switchOn('0xF09AC8/1', {
-          mood: 6
+          level: 32
         });
-      }).toThrow(new Error('Invalid mood value must be in range 1-5.'));
+      }).toThrow(new Error('Invalid level value must be in range 1-31.'));
     });
     it('should send the level if one is specified', function(done){
       lighting5.switchOn('0xF09AC8/1', {
-        level: 80
+        level: 0x14,
       }, function(){
         done();
       });
-      expect(fakeSerialPort).toHaveSent([10, 20, 0, 0, 0xF0, 0x9A, 0xC8, 1, 1, 80, 0]);
+      expect(fakeSerialPort).toHaveSent([10, 20, 0, 0, 0xF0, 0x9A, 0xC8, 1, 1, 0x14, 0]);
     });
     it('should handle no callback', function(){
       lighting5.switchOn('0xF09AC8/1', {
-        level: 80
+        level: 0x10
       });
-      expect(fakeSerialPort).toHaveSent([10, 20, 0, 0, 0xF0, 0x9A, 0xC8, 1, 1, 80, 0]);
+      expect(fakeSerialPort).toHaveSent([10, 20, 0, 0, 0xF0, 0x9A, 0xC8, 1, 1, 0x10, 0]);
     });
   });
   describe('.switchOff', function(){
     beforeEach(function (){
-      lighting5 = new rfxcom.Lighting5(device, rfxcom.lighting5.EMW100);
+      lighting5 = new rfxcom.Lighting5(device, rfxcom.Lighting5.EMW100);
     });
     it('should send the correct bytes to the serialport', function(done){
       var sentCommandId;

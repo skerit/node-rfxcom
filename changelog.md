@@ -1,7 +1,21 @@
-Version 0.5.1
+Version 0.6.0
 -------------
 
+- Removed Lighting5 command names, replaced with Lighting5.ON instead of "On".
+- Added checking for valid level in Lighting5 switchOn
+- Changed the mood setting to Lighting5.MOOD1..Lighting5.MOOD5 so to switch on
+  a LightwaveRF light to MOOD5 use:
+
+    .switchOn({command: Lighting5.MOOD2})
+
+These changes were suggested by Benjie.
+
+- Modified the exports for Lighting2 and Lighting5, to update code use the
+  subtype as a property on the function:
+    lighting2 = new Lighting2(device, Lighting2.ANSLUT)
+
 - Removed dependency on underscore.js.
+
 
 Version 0.5.0
 -------------

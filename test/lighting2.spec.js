@@ -24,7 +24,7 @@ describe('Lighting2 class', function () {
   });
   describe('.switchOn', function () {
     beforeEach(function () {
-      lighting2 = new rfxcom.Lighting2(device, rfxcom.lighting2.ANSLUT);
+      lighting2 = new rfxcom.Lighting2(device, rfxcom.Lighting2.ANSLUT);
     });
     it('should send the correct bytes to the serialport', function (done) {
       var sentCommandId;
@@ -40,7 +40,7 @@ describe('Lighting2 class', function () {
         port: fakeSerialPort,
         debug: true
       }),
-        debugLight = new rfxcom.Lighting2(debugDevice, rfxcom.lighting2.ANSLUT);
+        debugLight = new rfxcom.Lighting2(debugDevice, rfxcom.Lighting2.ANSLUT);
 
       var consoleSpy = spyOn(console, 'log');
       debugLight.switchOn('0x03FFFFFF/1', done);
@@ -63,7 +63,7 @@ describe('Lighting2 class', function () {
   });
   describe('.switchOff', function () {
     beforeEach(function () {
-      lighting2 = new rfxcom.Lighting2(device, rfxcom.lighting2.ANSLUT);
+      lighting2 = new rfxcom.Lighting2(device, rfxcom.Lighting2.ANSLUT);
     });
     it('should send the correct bytes to the serialport', function (done) {
       var sentCommandId;
@@ -86,7 +86,7 @@ describe('Lighting2 class', function () {
   });
   describe('.setLevel', function () {
     beforeEach(function () {
-      lighting2 = new rfxcom.Lighting2(device, rfxcom.lighting2.ANSLUT);
+      lighting2 = new rfxcom.Lighting2(device, rfxcom.Lighting2.ANSLUT);
     });
     it('should send the correct bytes to the serialport', function (done) {
       var sentCommandId;
