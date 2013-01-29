@@ -13,7 +13,7 @@ To install
   npm install rfxcom
 </pre>
 
-This will pull in the two dependencies, serialport 1.0.6+ and underscore.js.
+This will pull in the dependency serialport 1.0.6+.
 
 To Use
 ------
@@ -68,6 +68,21 @@ LightwaveRf lights get their identity from the remote used to pair, if you don't
 have a remote, or if you want to specify the address manually, you can pair the
 device and send lightwaverf.switchOn("<insert address>") to unpair, send
 lightwave.switchOff("<insert address>") while the device is awaiting pairing.
+
+Lighting1
+---------
+There's a specialised Lighting1 prototype, which uses an RfxCom object.
+
+<pre>
+    var rfxtrx = new rfxcom.RfxCom("/dev/ttyUSB0", {debug: true}),
+        lighting1 = new rfxcom.Lighting1(rfxtrx, rfxcom.lighting1.ARC);
+
+    lighting1.switchOn("0x41/1"); // 41 == housecode A
+    lighting1.switchOff("0x41/1");
+</pre>
+
+The lighting1 message controls one of eight subtypes, you need to specify the
+subtype to the constructor, the options are in rfxcom.lighting1.
 
 Lighting2
 ---------
