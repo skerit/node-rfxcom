@@ -1,3 +1,68 @@
+Version 0.7.9
+-------------
+
+- Emit end event when serial port 'ends' (device is removed from USB port)
+  contributed by @freakent.
+- Bump to serialport ~1.4.
+
+Version 0.7.7
+-------------
+
+- Change tbX messages to tbhX messages and fix typo in battery level
+  determination.
+
+Version 0.7.6
+-------------
+
+- Handle the rfxmeter and tempbaro messages.
+
+Version 0.7.5
+-------------
+
+- Implement support for rfxmeter and tempbaro sensors from bwired-nl.
+
+Version 0.7.4
+-------------
+
+- Support for serialport 1.3.0 which requires a callback for flush this fixes
+  bigkevmcd/node-rfxcom#26.
+
+Version 0.7.3
+-------------
+
+- Fix bug in emitting "received" events.
+
+Version 0.7.2
+-------------
+
+- Added additional event "received" with the raw data that was received from the
+  device contributed by @iangregory.
+- Added save() method to the rfxcom object, allowing saving the configured
+  protocols to the NVRAM of the rfxtrx433, the SDK cautions against using this
+  too often as there is a limited number of writes (10K).
+
+Version 0.7.1
+-------------
+
+- Add additional protocol defines for use when configuring the device,
+  contributed by @njh.
+
+Version 0.7.0
+-------------
+
+- Changes the format of the lighting2 event, the subtype will correspond to the
+  values in rfxcom.lighting2.
+
+Version 0.6.1
+-------------
+
+- Send a "level" command when we are trying to set the level.
+
+Version 0.6.0
+-------------
+
+- Bumped serialport version to be compatible with Node 0.10.x.
+
 Version 0.5.1
 -------------
 
